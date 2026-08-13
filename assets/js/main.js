@@ -30,13 +30,13 @@ function rejectLove() {
 function acceptLove() {
   document.getElementById("questionContainer").innerHTML = `
         <div class="image-gif">
-          <img src="https://media1.tenor.com/m/aEWN44So2ckAAAAC/kiss-kisses.gif" class="gif">
+          <img src="./assets/images/cartoon.gif" class="gif">
         </div>
-        <h2 id="textBefore" class="doYou">YAYAYYAYAYAYAY Thank ❤️</h2>
+        <h2 id="textBefore" class="doYou">นั่นไงผมว่าแล้ววววว 😎</h2>
     `;
 
   const cheerSound = document.getElementById("cheerSound");
-  cheerSound.play(); // 👈 เล่นเสียงตรงนี
+  // cheerSound.play(); // 👈 เล่นเสียงตรงนี
 
   launchConfetti();
   startHeartRain();

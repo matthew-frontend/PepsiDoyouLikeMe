@@ -39,7 +39,7 @@ main {
 .image-gif {
   border-radius: 12px;
   overflow: hidden;
-  width: 420px;
+  /* width: 420px; */
   height: 400px;
 }
 .image-gif img {
@@ -69,7 +69,6 @@ h2.doYou {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 25px;
-  width: 156px;
 }
 #button-flex .btn {
   background-color: #ffa3ae;
@@ -84,11 +83,16 @@ h2.doYou {
 }
 #button-flex .btn:hover {
   transform: scale(1.1);
-  transition: top 0.3s ease, left 0.3s ease;
+  transition:
+    top 0.3s ease,
+    left 0.3s ease;
 }
 
 #noBtn {
-  transition: transform 0.2s ease, top 0.3s ease, left 0.3s ease;
+  transition:
+    transform 0.2s ease,
+    top 0.3s ease,
+    left 0.3s ease;
   background-color: #fc344c !important;
 }
 
@@ -174,7 +178,8 @@ h2.doYou {
     background-color: #ffe5e9;
     height: 100vh;
   }
-  a, button {
+  a,
+  button {
     font-weight: 500;
     transition: all 0.3s;
   }
