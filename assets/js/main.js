@@ -164,13 +164,25 @@ function acceptLove() {
 
   launchConfetti();
   startHeartRain();
-  if (soundOn) playCheer();
+
+  /* กด Yes แล้วเปิดเพลงให้อัตโนมัติ (คลิกของผู้ใช้ = เบราว์เซอร์ยอมให้เล่นเสียง) */
+  soundOn = true;
+  soundToggle.textContent = "🔊";
+  soundToggle.setAttribute("aria-label", "ปิดเสียง");
+  playCheer();
 }
 
 function playCheer() {
   cheerSound.currentTime = 0;
   cheerSound.play().catch(() => {
-    /* เบราว์เซอร์บล็อกเสียงไว้ — ปล่อยผ่าน */
+    /* เบราว์เซอร์บล็อกเสียงไว้ — ลองใหม่ตอนผู้ใช้แตะหน้าจอครั้งถัดไป */
+    document.addEventListener(
+      "pointerdown",
+      () => {
+        if (soundOn) cheerSound.play().catch(() => {});
+      },
+      { once: true },
+    );
   });
 }
 
