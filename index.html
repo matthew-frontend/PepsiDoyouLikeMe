@@ -1,16 +1,17 @@
+<!doctype html>
 <html lang="th">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffe7ee" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="./assets/images/ticker.jpg" />
-    <title>Fang</title>
 
     <!-- Primary Meta Tags -->
-    <title>Fang</title>
-    <meta name="title" content="Fang" />
-    <meta name="description" content="Fang" />
+    <title>💌 มีเรื่องจะบอก...</title>
+    <meta name="title" content="💌 มีเรื่องจะบอก..." />
+    <meta name="description" content="เปิดดูหน่อยได้ไหม มีอะไรอยากบอก 🥺" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -18,11 +19,14 @@
       property="og:url"
       content="https://matthew-frontend.github.io/Fang/"
     />
-    <meta property="og:title" content="Fang" />
-    <meta property="og:description" content="Fang" />
+    <meta property="og:title" content="💌 มีเรื่องจะบอก..." />
+    <meta
+      property="og:description"
+      content="เปิดดูหน่อยได้ไหม มีอะไรอยากบอก 🥺"
+    />
     <meta
       property="og:image"
-      content="https://matthew-frontend.github.io/Fang/assets/images/ticker.jpg.webp"
+      content="https://matthew-frontend.github.io/Fang/assets/images/cartoon2.gif"
     />
 
     <!-- Twitter -->
@@ -31,55 +35,75 @@
       property="twitter:url"
       content="https://matthew-frontend.github.io/Fang/"
     />
-    <meta property="twitter:title" content="Fang" />
-    <meta property="twitter:description" content="Fang" />
+    <meta property="twitter:title" content="💌 มีเรื่องจะบอก..." />
+    <meta
+      property="twitter:description"
+      content="เปิดดูหน่อยได้ไหม มีอะไรอยากบอก 🥺"
+    />
     <meta
       property="twitter:image"
-      content="https://matthew-frontend.github.io/Fang/assets/images/ticker.jpg"
+      content="https://matthew-frontend.github.io/Fang/assets/images/cartoon2.gif"
     />
-
-    <!-- Meta Tags Generated with https://metatags.io -->
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&family=Pangolin&display=swap"
       rel="stylesheet"
     />
 
     <!-- Style -->
     <link rel="stylesheet" href="./assets/css/main.css" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
   </head>
 
   <body>
-    <!---- Header ---->
+    <!---- ฉากหลัง: วงกลมเบลอ + หัวใจลอย ---->
+    <div class="bg-decor" aria-hidden="true">
+      <span class="blob blob--1"></span>
+      <span class="blob blob--2"></span>
+      <span class="blob blob--3"></span>
+    </div>
+
+    <!---- ปุ่มเปิด/ปิดเสียง ---->
+    <button
+      id="soundToggle"
+      type="button"
+      class="sound-toggle"
+      aria-label="เปิดเสียง"
+      title="เปิด/ปิดเสียง"
+    >
+      🔇
+    </button>
 
     <!---- Main Content ---->
     <main id="questionContainer">
-      <div class="image-gif">
-        <img id="imgBefore" src="./assets/images/cartoon2.gif" alt="" />
-      </div>
-      <h2 id="textBefore" class="doYou">คุณชอบผมไหม ?</h2>
-      <div class="message" id="message"></div>
-      <div id="button-flex">
-        <button id="yesBtn" type="button" class="btn">Yes</button>
-        <button
-          id="noBtn"
-          type="button"
-          class="btn"
-          style="
-            transition:
-              top 0.3s ease,
-              left 0.3s ease;
-          "
-        >
-          No
-        </button>
+      <div class="card">
+        <div class="image-gif">
+          <span class="sticker sticker--tl">💕</span>
+          <span class="sticker sticker--tr">✨</span>
+          <span class="sticker sticker--br">🌸</span>
+          <img
+            id="imgBefore"
+            src="./assets/images/cartoon2.gif"
+            alt="ตัวการ์ตูนน่ารักกำลังรอคำตอบ"
+          />
+        </div>
+
+        <h2 id="textBefore" class="doYou">คุณชอบผมไหม ?</h2>
+        <p class="subtitle">ตอบตามใจเลยนะ !</p>
+
+        <div class="message" id="message"></div>
+
+        <div id="button-flex">
+          <button id="yesBtn" type="button" class="btn">ชอบสิ 💗</button>
+          <button id="noBtn" type="button" class="btn">ไม่ชอบ</button>
+        </div>
       </div>
     </main>
-    <div id="heart-container"></div>
+
+    <div id="heart-container" aria-hidden="true"></div>
+
     <audio
       id="cheerSound"
       src="./assets/images/mixkit-small-group-light-applause-517.wav"
@@ -87,51 +111,7 @@
       loop
     ></audio>
 
-    <!---- Footer ---->
-
-    <script src="./assets/js/main.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2/dist/confetti.browser.min.js"></script>
-    <script>
-      const noBtn = document.getElementById("noBtn");
-      const questionContainer = document.getElementById("questionContainer");
-
-      let enlarged = false;
-
-      noBtn.addEventListener("mouseover", () => {
-        // เพิ่ม class แค่ครั้งแรก
-        if (!enlarged) {
-          noBtn.classList.add("enlarged");
-          enlarged = true;
-        }
-
-        // ทำให้ปุ่มหนี
-        const newX = Math.floor(
-          Math.random() * (questionContainer.offsetWidth - noBtn.offsetWidth),
-        );
-        const newY = Math.floor(
-          Math.random() * (questionContainer.offsetHeight - noBtn.offsetHeight),
-        );
-
-        noBtn.style.position = "absolute";
-        noBtn.style.left = `${newX}px`;
-        noBtn.style.top = `${newY}px`;
-      });
-
-      /* yesBtn.addEventListener("click", () => {
-        // ซ่อนของเดิม
-        document.getElementById("textBefore").style.display = "none";
-        document.getElementById("imgBefore").style.display = "none";
-        document.getElementById("button-flex").style.display = "none";
-
-        // รอ 1 วิ แล้วแสดงของใหม่
-        setTimeout(() => {
-          const imgAfter = document.getElementById("imgAfter");
-          const textAfter = document.getElementById("textAfter");
-
-          imgAfter.classList.add("show");
-          textAfter.classList.add("show");
-        }, 1000);
-      }); */
-    </script>
+    <script src="./assets/js/main.js" defer></script>
   </body>
 </html>

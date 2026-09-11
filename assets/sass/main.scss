@@ -3,22 +3,41 @@
 @use 'style';
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    height: 100%;
+    /* หน้านี้ต้องพอดีจอเสมอ ห้ามมี scroll */
+    overflow: hidden;
   }
 
   body {
-    font-family: "Pangolin", cursive;
+    font-family: "Mali", "Pangolin", cursive;
     font-size: 16px;
     line-height: 1.5;
     margin: 0;
     padding: 0;
-    background-color: #ffe5e9;
-    height: 100vh;
+    color: #6b4a56;
+    background:
+      radial-gradient(1200px 600px at 15% 0%, #fff2f5 0%, transparent 60%),
+      radial-gradient(900px 500px at 90% 100%, #fff0e6 0%, transparent 55%),
+      linear-gradient(160deg, #ffe7ee 0%, #fff5f7 45%, #ffeef8 100%);
+    background-attachment: fixed;
   }
-  
-  a, button{
+
+  a, button {
     font-weight: 500;
     transition: all .3s;
+  }
+
+  /* ตัวชี้เป็นหัวใจน่ารัก ๆ */
+  ::selection {
+    background: #ffc2d1;
+    color: #7a3b50;
   }
 }
